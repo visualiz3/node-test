@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const expressip = require("express-ip");
+const ipMiddleware = require("./ipMiddleware");
 const PORT = process.env.PORT || 4000;
-
-app.use(expressip().getIpInfoMiddleware);
+app.set("trust proxy", true);
+app.use(ipMiddleware().getIpInfoMiddleware);
 app.set("view engine", "ejs");
 app.set("PORT", PORT);
 
