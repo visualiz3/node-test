@@ -4,11 +4,11 @@ const expressip = require("express-ip");
 const PORT = process.env.PORT || 4000;
 
 app.use(expressip().getIpInfoMiddleware);
-
+app.set("view engine", "ejs");
 app.set("PORT", PORT);
 
 app.get("/ip", function (req, res) {
-  res.send(req.ipInfo);
+  res.render("ip", { req });
   console.log(req.ipInfo);
 });
 

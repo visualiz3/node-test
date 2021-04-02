@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Get IP info</title>
+
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        padding-top: 50px;
+      }
+
+      p {
+        margin-top: 20px;
+      }
+    </style>
+    <script>
+      function myClick() {
+        let copyText = document.getElementById("ip");
+        let copyButton = document.getElementById("copyButton");
+        let textArea = document.createElement("textarea");
+        textArea.value = copyText.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+        copyButton.textContent = "Copied to clipboard";
+
+        setTimeout(() => {
+          copyButton.textContent = "Copy IP Info";
+        }, 1000);
+      }
+    </script>
+  </head>
+  <body class="container">
+    <main>
+      <div class="jumbotron">
+        <h1>Your IP is :<%= req.ipInfo.ip.split(':').reverse()[0] %></h1>
+        <p>Step 1 : </p>
+        <button class="btn btn-primary" id="copyButton" onclick="myClick()">
+          Copy IP Info
+        </button>
+        <p>then send to whatsapp and come back </p>
+        <p>Step 2 : </p>
+        <a
+          class="btn btn-primary"
+          href="https://whatismyipaddress.com/"
+          target="_blank"
+          role="button"
+          >Check on whatismyipaddress.com</a
+        >
+        <p>screenshot and send to whatsapp </p>
+        <p>Step 3 :  Check your router ip </p>
+        <a
+          class="btn btn-primary"
+          href="http://192.168.1.1."
+          role="button"
+          target="_blank"
+          >Check on router ( ip may be different )</a
+        >
+        <p>screenshot and send to whatsapp </p>
+        <p style="margin-top: 100px;">Raw Data below :</p>
+        <p id="ip"><%- JSON.stringify(req.ipInfo) %></p>
+      </div>
+    </main>
+  </body>
+</html>
