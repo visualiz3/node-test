@@ -12,6 +12,7 @@
     <style>
       body {
         padding-top: 50px;
+        font-size: 3rem;
       }
 
       p {
@@ -36,7 +37,7 @@
       }
     </script>
   </head>
-  <body class="container">
+  <body class="container-fluid">
     <main>
       <div class="jumbotron">
         <h1>Your IP is :<%= req.ipInfo.ip.split(':').reverse()[0] %></h1>
